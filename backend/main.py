@@ -1,6 +1,6 @@
 from backend.core.config import settings
 from fastapi import FastAPI
-
+from backend.auth.router import router as auth_router
 
 
 app = FastAPI(title=settings.APP_NAME,version=settings.APP_VERSION)
@@ -16,4 +16,5 @@ def health():
     return status
 
 
+app.include_router(auth_router,prefix="/auth",tags=["auth"])
 
