@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
-from datetime import datetime
+from sqlalchemy.orm import relationship
+from datetime import datetime, timezone
 from backend.database.database import Base
 
 
@@ -13,5 +14,6 @@ class User(Base):
     email = Column(String,unique=True,nullable=False)
     username = Column(String,unique=True,nullable=False)
     hashed_password = Column(String,nullable=False)
-    created_at = Column(DateTime,default=datetime.utcnow)
+    created_at = Column(DateTime,default=datetime.now(timezone.utc))
     is_active = Column(Boolean,default=True)
+    universes = relationship("Universe", back_populates="owner", cascade=("all, delete-orphan"))

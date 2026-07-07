@@ -8,6 +8,9 @@ from alembic import context
 
 from backend.database.database import Base
 from backend.auth.models import User
+from backend.nodes.models import Node
+from backend.relationships.models import Relationship
+from backend.universes.models import Universe
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
