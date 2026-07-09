@@ -2,8 +2,8 @@ from backend.core.config import settings
 from fastapi import FastAPI
 from backend.auth.router import router as auth_router
 from backend.universes.router import router as universe_router
-from backend.nodes.models import Node
-from backend.relationships.models import Relationship
+from backend.nodes.router import router as node_router
+from backend.relationships.router import router as relationship_router
 
 
 app = FastAPI(title=settings.APP_NAME,version=settings.APP_VERSION)
@@ -21,4 +21,5 @@ def health():
 
 app.include_router(auth_router,prefix="/auth",tags=["auth"])
 app.include_router(universe_router,prefix="/universes",tags=["universes"])
-
+app.include_router(node_router,prefix="/nodes",tags=["nodes"])
+app.include_router(relationship_router,prefix="/relationships",tags=["relationships"])
