@@ -9,9 +9,19 @@ from backend.relationships.router import router as relationship_router
 from backend.search.router import router as search_router
 from backend.nodes.models import Node
 from backend.relationships.models import Relationship
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI(title=settings.APP_NAME,version=settings.APP_VERSION)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health")
